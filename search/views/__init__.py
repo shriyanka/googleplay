@@ -1,1 +1,2 @@
-from .search import IndexView
+from .search import IndexView, ResultView
+from .query import ParseView, FetchView

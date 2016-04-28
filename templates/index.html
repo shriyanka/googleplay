@@ -23,17 +23,17 @@
       <div class="container">
         <br><br>
         <h5 class="header center teal-text text-lighten-2">Search from Anything to Everything !!</h5>
-        <div class="row center">
-          <form class="col s12">
+        <form class="col s12" action="/search/" method="post">
+           {% csrf_token %}
+        <div class="row center">          
             <div class="input-fieldcol s11">
-              <input id="search_term" placeholder="Search Apps" type="text" class="validate">
-              <label for="search_term"></label>
-            </div>
-          </form>
+              {{ form.as_p }}
+            </div>          
         </div>
         <div class="row center">
-          <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Search</a>
+          <button type="submit" class="btn-large waves-effect waves-light teal lighten-1">Search</button>
         </div>
+        </form>
         <br><br>
 
       </div>
