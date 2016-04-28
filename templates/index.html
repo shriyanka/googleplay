@@ -1,0 +1,69 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>PlayStore App Search</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="teal lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo center">PlayStore App Search powered by app<span class="red-text">knox</span></a>
+    </div>
+  </nav>
+  {% block search %}
+  <div id="index-banner" class="parallax-container" style="margin-top:10%">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h5 class="header center teal-text text-lighten-2">Search from Anything to Everything !!</h5>
+        <div class="row center">
+          <form class="col s12">
+            <div class="input-fieldcol s11">
+              <input id="search_term" placeholder="Search Apps" type="text" class="validate">
+              <label for="search_term"></label>
+            </div>
+          </form>
+        </div>
+        <div class="row center">
+          <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Search</a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+  </div>
+ {% endblock %}
+
+  <div class="container">
+    <div class="section">
+
+      {% block results %}
+      {% endblock %}
+       
+
+    </div>
+  </div>
+
+  <footer class="page-footer white">
+    <div class="footer-copyright grey darken-1">
+      <div class="container center">
+      Made by <a class="brown-text text-lighten-3" href="http://github.com/shriyanka">Kajal Gupta</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/static/js/materialize.js"></script>
+  <script src="/static/js/init.js"></script>
+
+  </body>
+</html>
