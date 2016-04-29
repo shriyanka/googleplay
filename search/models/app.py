@@ -2,10 +2,11 @@ from .base import Base
 from django.db import models
 
 class Apps(Base):
-	app_id = models.CharField(max_length=64, null=True, blank=True)
-	app_name =  models.CharField(max_length=128, null=True, blank=True)
+	app_id = models.CharField(max_length=64, primary_key=True)
+	app_name =  models.CharField(max_length=256, null=True, blank=True)
 	developer_name =  models.CharField(max_length=128, null=True, blank=True)
 	developer_email = models.EmailField(max_length=128)
+	published = models.CharField(max_length=32, null=True, blank=True)
 	icon_url = models.URLField(max_length=256)
 	price = models.CharField(max_length=64,null=True,blank=True,default="Free")
 

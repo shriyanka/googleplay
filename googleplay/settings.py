@@ -79,7 +79,7 @@ DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'INSTANCE': 'localhost',
-            'NAME': 'googleplay',
+            'NAME': 'playstore',
             'USER': 'root',
             'PASSWORD':'none',
         }

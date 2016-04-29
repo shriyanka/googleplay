@@ -6,29 +6,24 @@ from ..models import SearchResultApp, Apps, SearchTerm
 from ..utils import services, constants
 from ..forms import SearchForm
 
-class ParseView(View):
-	"""
-	View For Parsing New Search Request and storing it in DB
-	"""
-	template_name = "results.html"
-
-	def get(self,request,query):
-		form = SearchForm()
-		trending = services.getTrending()
-		context = services.makeQuery(query)
-		return render(request, self.template_name, {'form': form,'context':context,'trending':trending})
-    		
-
 class FetchView(View):	
 	"""
-	View For Fetching Existing Search Request from DB
+	View For Fetching Existing Search Request from DB or Creating a new one
 	"""
 	template_name = "results.html"
 
 	def get(self,request,query):
 		form = SearchForm()
 		trending = services.getTrending()
-		context = services.getQuery(query)
+
+		newSearchTerm = request.GET.get("new")
+		if newSearchTerm == constants.NEW:
+			print "New Search Term"
+			context = services.makeQuery(query)
+		else:
+			print "Existing Search Term"
+			context = services.getQuery(query)
+
 		return render(request, self.template_name, {'form': form,'context':context,'term':query,'trending':trending})
 
 
@@ -42,7 +37,7 @@ class DetailView(View):
 		term = request.GET.get('term')
 		trending = services.getTrending()
 		try:
-			app = Apps.objects.get(id=int(pk))
+			app = Apps.objects.get(app_id=pk)
 		except:
 			# if the details has been removed or wrong id entered
 			app = constants.DETAILS_NOT_FOUND

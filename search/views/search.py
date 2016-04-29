@@ -22,13 +22,13 @@ class IndexView(View):
     		term = form.save(commit=False)
     		term.count+=1
     		term.save()
-    		return HttpResponseRedirect("/parse/%s/"%query)
+    		return HttpResponseRedirect("/fetch/%s/?new=y"%query)
     	else:
     		#get the cached result from SearchTerm and Apps Model
     		term = SearchTerm.objects.get(term=query)
     		term.count+=1
     		term.save()
-    		return HttpResponseRedirect("/fetch/%s/"%query)
+    		return HttpResponseRedirect("/fetch/%s/?new=n"%query)
 
 class ResultView(TemplateView):
 	template_name = "results.html"
