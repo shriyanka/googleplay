@@ -3,6 +3,9 @@ from lxml import html
 from . import constants
 from ..models import Apps, SearchTerm, SearchResultApp
 
+def getTrending():
+	return SearchTerm.objects.all().order_by("-count")[:5]
+
 def getQuery(query):
 	print "The Search Query Recieved is: %s"%query
 
@@ -16,6 +19,7 @@ def getQuery(query):
 		# if the search term has been saved but no apps was parsed for that term
 		# for example user searched "dkjd"
 		# this is necessary coz search term is saved first during form submission itself
+		# and later the related apps get updated
 		return {"result":constants.NOT_FOUND}
 	else:
 		return {"result":apps}

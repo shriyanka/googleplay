@@ -14,8 +14,9 @@ class ParseView(View):
 
 	def get(self,request,query):
 		form = SearchForm()
+		trending = services.getTrending()
 		context = services.makeQuery(query)
-		return render(request, self.template_name, {'form': form,'context':context})
+		return render(request, self.template_name, {'form': form,'context':context,'trending':trending})
     		
 
 class FetchView(View):	
@@ -26,8 +27,9 @@ class FetchView(View):
 
 	def get(self,request,query):
 		form = SearchForm()
+		trending = services.getTrending()
 		context = services.getQuery(query)
-		return render(request, self.template_name, {'form': form,'context':context,'term':query})
+		return render(request, self.template_name, {'form': form,'context':context,'term':query,'trending':trending})
 
 
 class DetailView(View):
@@ -38,10 +40,11 @@ class DetailView(View):
 
 	def get(self,request,pk):
 		term = request.GET.get('term')
+		trending = services.getTrending()
 		try:
 			app = Apps.objects.get(id=int(pk))
 		except:
 			# if the details has been removed or wrong id entered
 			app = constants.DETAILS_NOT_FOUND
 		
-		return render(request, self.template_name, {'context':app,'term':term})
+		return render(request, self.template_name, {'context':app,'term':term,'trending':trending})

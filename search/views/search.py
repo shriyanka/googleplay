@@ -4,13 +4,15 @@ from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 from ..forms import SearchForm
 from ..models import SearchResultApp, Apps, SearchTerm
+from ..utils import services
 
 class IndexView(View):
     template_name = "index.html"
     
     def get(self,request):
-    	form = SearchForm()    	
-    	return render(request, self.template_name, {'form': form})
+    	form = SearchForm()
+        trending = services.getTrending()
+    	return render(request, self.template_name, {'form': form,'trending':trending})
 
     def post(self,request):
     	form = SearchForm(request.POST)
