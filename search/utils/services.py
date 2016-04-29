@@ -82,6 +82,7 @@ def storeContent(app_id, app_name, developer_name, published, icon_url, price, q
 				count+=1
 			except Exception as e:
 				print "Exception occurred : %s"%str(e)
+				count+=1
 				continue
 
 			#store an entry in SearchResultApp
