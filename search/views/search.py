@@ -17,6 +17,8 @@ class IndexView(View):
     def post(self,request):
     	form = SearchForm(request.POST)
     	query = request.POST.get("term")
+        if not query:
+            return HttpResponseRedirect("/")
     	if form.is_valid():
     		# store the new search Term in SearchTerm Model
     		term = form.save(commit=False)
