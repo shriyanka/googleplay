@@ -7,12 +7,19 @@ class Apps(Base):
 	developer_name =  models.CharField(max_length=128, null=True, blank=True)
 	developer_email = models.EmailField(max_length=128)
 	icon_url = models.URLField(max_length=256)
-	#price = models.CharField(max_length=64,null=True,blank=True,default="Free")
+	price = models.CharField(max_length=64,null=True,blank=True,default="Free")
+
+	def __str__(self):
+		return self.app_name
+
 
 class SearchTerm(Base):
     term = models.CharField(max_length=128, primary_key=True)
     apps = models.ManyToManyField('Apps', related_name='apps', through='SearchResultApp', blank=True)
     count = models.IntegerField(default=0)
+
+    def __str__(self):
+    	return self.term
 
 class SearchResultApp(Base):
     app = models.ForeignKey('Apps')

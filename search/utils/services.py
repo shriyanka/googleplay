@@ -1,16 +1,35 @@
 import requests
 from lxml import html
+from . import constants
+from ..models import Apps, SearchTerm, SearchResultApp
 
-URL = "https://play.google.com/store/search?q="
+def getQuery(query):
+	print "The Search Query Recieved is: %s"%query
+
+	qry = SearchResultApp.objects.filter(term=query)
+	app_list = []
+	for q in qry:
+		app_list.append(q.app_id)
+	
+	apps = Apps.objects.filter(id__in=app_list)
+	if not apps:
+		# if the search term has been saved but no apps was parsed for that term
+		# for example user searched "dkjd"
+		# this is necessary coz search term is saved first during form submission itself
+		return {"result":constants.NOT_FOUND}
+	else:
+		return {"result":apps}
+
 def makeQuery(query):
 	print "Making Query for - %s"%(query)
-	queryUrl = URL+query
+
+	queryUrl = constants.URL+query
 	req = requests.get(queryUrl)
 	if int(req.status_code) == 200:
 		parsed_text = parseContent(req.content)
 		return {"context":"abc"}
 	else:
-		return {"Result":"No Search Result Found"}
+		return {"Result":constants.NOT_FOUND}
 
 def parseContent(content):
 	tree = html.fromstring(content)
@@ -35,6 +54,3 @@ def parseContent(content):
 	print price
 	print "#############################3\n\n\n\nn\n\\nn\n\n\n\n"
 	print description
-
-def getQuery(query):
-	return {"context":"abc"}

@@ -10,7 +10,7 @@ class IndexView(View):
     
     def get(self,request):
     	form = SearchForm()    	
-    	return render(request, 'index.html', {'form': form})
+    	return render(request, self.template_name, {'form': form})
 
     def post(self,request):
     	form = SearchForm(request.POST)
