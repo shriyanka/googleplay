@@ -1,3 +1,4 @@
+{# Templates should inherit from base rather than duplicating code#}
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +26,10 @@
         <h5 class="header center teal-text text-lighten-2">Search from Anything to Everything !!</h5>
         <form class="col s12" action="/search/" method="post">
            {% csrf_token %}
-        <div class="row center">          
+        <div class="row center">
             <div class="input-fieldcol s11">
               {{ form.as_p }}
-            </div>          
+            </div>
         </div>
         <div class="row center">
           <button type="submit" class="btn-large waves-effect waves-light teal lighten-1">Search</button>
@@ -46,7 +47,7 @@
 
       {% block results %}
       {% endblock %}
-       
+
 
     </div>
   </div>
@@ -55,11 +56,11 @@
     <div class="section">
       <h5 class="teal-text">Trending Searches..</h5>
       {% for app in trending %}
-      <a href="/fetch/{{ app.term }}/">{{ app.term }} </a> 
-     {% endfor %}  
+      <a href="/fetch/{{ app.term }}/">{{ app.term }} </a>
+     {% endfor %}
     </div>
   </div>
-  
+
 
   <footer class="page-footer white">
     <div class="footer-copyright grey darken-1">

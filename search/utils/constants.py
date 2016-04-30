@@ -1,3 +1,5 @@
+# These should really belong in settings.py
+
 NEW = "y"
 URL = "https://play.google.com/store/search?q="
 NOT_FOUND = "No Search Result Found"
