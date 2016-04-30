@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import View
 from ..models import Apps
+# Try avoiding relative import as much as possible
+# Try using absolute import as much a possible.
 from ..utils import services, constants
 from ..forms import SearchForm
 

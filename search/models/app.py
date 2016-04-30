@@ -1,6 +1,8 @@
 from .base import Base
 from django.db import models
 
+# You can do a better DB design for this specific problem.
+# Will share the design after I create one.
 
 class Apps(Base):
     app_id = models.CharField(max_length=64, primary_key=True)

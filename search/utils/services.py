@@ -1,5 +1,9 @@
 import requests
+
+# Xpath is supremely error-prone, hard-to-debug & had-to-maintain.
+# You can use something like pyquery to do this in a cleaner & more reliable way.
 from lxml import html
+
 from . import constants
 from ..models import Apps, SearchTerm, SearchResultApp
 

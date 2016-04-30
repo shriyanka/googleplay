@@ -7,6 +7,7 @@ class SearchTermAdmin(admin.ModelAdmin):
 
 
 class AppsAdmin(admin.ModelAdmin):
+    # Good practice, I like this. :)
     model = Apps
     list_display = ('app_id', 'app_name', 'developer_name')
 

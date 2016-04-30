@@ -23,6 +23,7 @@ class IndexView(View):
         if not query:
             return HttpResponseRedirect("/")
         if form.is_valid():
+            # there is a better way to do this. Will explain it later.
             # store the new search Term in SearchTerm Model
             term = form.save(commit=False)
             term.count += 1
