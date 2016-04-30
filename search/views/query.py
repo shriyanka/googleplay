@@ -18,10 +18,10 @@ class FetchView(View):
 
 		newSearchTerm = request.GET.get("new")
 		if newSearchTerm == constants.NEW:
-			print "New Search Term"
+			print("New Search Term")
 			context = services.makeQuery(query)
 		else:
-			print "Existing Search Term"
+			print("Existing Search Term")
 			context = services.getQuery(query)
 
 		return render(request, self.template_name, {'form': form,'context':context,'term':query,'trending':trending})

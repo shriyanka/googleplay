@@ -7,7 +7,7 @@ def getTrending():
 	return SearchTerm.objects.all().order_by("-count")[:5]
 
 def getQuery(query):
-	print "The Search Query Recieved is: %s"%query
+	print("The Search Query Recieved is: %s"%query)
 	qry = SearchResultApp.objects.filter(term=query)
 	app_list = []
 	for q in qry:
@@ -24,7 +24,7 @@ def getQuery(query):
 		return {"result":apps}
 
 def makeQuery(query):
-	print "Making Query for - %s"%(query)
+	print("Making Query for - %s"%(query))
 
 	queryUrl = constants.URL+query
 	req = requests.get(queryUrl)
@@ -81,7 +81,7 @@ def storeContent(app_id, app_name, developer_name, published, icon_url, price, q
 						icon_url=en_dc[4],price=en_dc[5])
 				count+=1
 			except Exception as e:
-				print "Exception occurred : %s"%str(e)
+				print("Exception occurred : %s"%str(e))
 				count+=1
 				continue
 
@@ -90,5 +90,5 @@ def storeContent(app_id, app_name, developer_name, published, icon_url, price, q
 				term = SearchTerm.objects.get(term=query)
 				searchObj = SearchResultApp.objects.create(term=term,app=ap)
 			except Exception as e:
-				print "Exception occurred: %s"%str(e)
+				print("Exception occurred: %s"%str(e))
 
